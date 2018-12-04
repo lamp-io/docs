@@ -1,17 +1,19 @@
 # Overview
 
-lamp.io is a [LAMP stack](https://en.wikipedia.org/wiki/LAMP_(software_bundle)) focused Platform as a Service (PaaS) application hosting
-provider. That means we provide a platform for you to run your PHP code on, without you having to configure or manage any servers. For
-more about us check out our [About page](https://www.lamp.io/about).
+lamp.io is a [LAMP stack](https://en.wikipedia.org/wiki/LAMP_(software_bundle)) focused Platform as a Service 
+([PaaS](https://azure.microsoft.com/en-us/overview/what-is-paas/)) application hosting provider. 
+That means we provide a platform for you to run your PHP code on, without you having to configure or manage any servers.
+For more about us check out our [About page](https://www.lamp.io/about).
 
 Here you'll find our documentation to help you with everything from getting started to scaling and advanced configuration.
 
 # Getting Started
 
-To get started with lamp.io is to sign up via the website by going to https://www.lamp.io/ and clicking the "Try It" button.  Once
-you've created your account and logged in you can click around and go from there, we've tried to make it as streamlined and clear as
-possible. If you want a little more guidance try watching our [demo video](https://www.youtube.com/watch?v=DY-oH7gQ2gQ)
-or keep reading below and we'll walk you through it.
+To get started with lamp.io you sign by going to https://www.lamp.io/ and clicking the "Try It" button.  
+Once you've created your account and logged in you can click around and go from there, we've tried to make it as streamlined and clear
+as possible. 
+If you want a little more guidance try watching our [demo video](https://www.youtube.com/watch?v=DY-oH7gQ2gQ) or keep reading below and
+we'll walk you through it.
 
 # Concepts
 
