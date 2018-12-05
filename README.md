@@ -33,14 +33,15 @@ Then the request goes to your container(s) running the [Apache HTTPD](https://ht
 Those containers load your code from a [Google Cloud Filestore](https://cloud.google.com/filestore/) NFS mount.
 
 # How-to
+- create an app
+- deploy code
+- setup a database
+- configure a custom domain
 
 # Tutorials
-## Wordpress
-[wordpress demo video](https://www.youtube.com/watch?v=8j2Ev1hX4ys)
-
-## Laravel
-
-## Using the API
+- [Wordpress](https://github.com/lamp-io/docs/tutorials/wordpress)
+- Laravel
+- Using the API
 
 # API Reference
 Our API reference is produced as a [swagger file](https://api.lamp.io/static/swagger.json) and you can interact with it directly from
