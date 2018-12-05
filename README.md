@@ -39,7 +39,7 @@ Those containers load your code from a [Google Cloud Filestore](https://cloud.go
 - configure a custom domain
 
 # Tutorials
-- [Wordpress](https://github.com/lamp-io/docs/tutorials/wordpress.md)
+- [Wordpress](https://github.com/lamp-io/docs/blob/master/tutorials/wordpress.md)
 - Laravel
 - Using the API
 
