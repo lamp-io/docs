@@ -18,7 +18,7 @@ we'll walk you through it.
 # Concepts
 
 ## LAMP App
-The central product unit in lamp.io is the "app". We take your PHP code, and serve it up at https://<random-name>.lamp.app. 
+The central product unit in lamp.io is the "app". We take your PHP code, and serve it up at https://random-name.lamp.app. 
 Under the hood we do that in the form of [Docker](https://www.docker.com/resources/what-container) containers running on our 
 [Kubernetes](https://kubernetes.io/) cluster on the [Google Cloud Platform](https://cloud.google.com/).
 
