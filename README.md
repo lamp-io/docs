@@ -25,7 +25,7 @@ Under the hood we do that in the form of [Docker containers](https://www.docker.
 
 ## Users and Organizations
 When you sign up as a lamp.io user the first time you're automatically put in your own default Organization.
-Billing is associated with Organizations, not users.
+Resources and the billing for them are associated with Organizations, not users.
 This way you can invite other users into into your Organization to work on your apps and other resources.
 Similarly you can be invited into other Organizations where you can create and manage apps for them that they pay for.
 
