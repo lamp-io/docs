@@ -10,25 +10,27 @@ Here you'll find documentation to help you with everything from getting started 
 # Getting Started
 
 To get started with lamp.io you sign by going to https://www.lamp.io/ and clicking the "Try It" button.  
-Once you've created your account and logged in you can click around and go from there, we've tried to make it as streamlined and clear
-as possible. 
+Once you've created your account and logged in you can click around and go from there. 
+We've tried to make it as streamlined and clear as possible. 
 If you want a little more guidance try watching our [demo video](https://www.youtube.com/watch?v=DY-oH7gQ2gQ) or keep reading below and
 we'll walk you through it.
 
 # Concepts
 
 ## LAMP App
-The central product unit in lamp.io is the "app". We take your PHP code, and serve it up at https://random-name.lamp.app. 
-Under the hood we do that in the form of [Docker](https://www.docker.com/resources/what-container) containers running on our 
+The core product unit in lamp.io is the "app". 
+We take your PHP code, and serve it up at https://random-name.lamp.app. 
+Under the hood we do that in the form of [Docker containers](https://www.docker.com/resources/what-container) running in our 
 [Kubernetes](https://kubernetes.io/) cluster on the [Google Cloud Platform](https://cloud.google.com/).
 
 ## Traffic flow
 your-app.lamp.app points to a [Google Cloud Load Balancer](https://cloud.google.com/load-balancing/) that sends traffic to our
 Kubernetes ([GKE](https://cloud.google.com/kubernetes-engine/)) cluster. 
-From there the [Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx) picks it up and decrypts it using our free 
-[Lets Encrypt](https://letsencrypt.org/) TLS Certificates. Then the request goes to your container(s) running
-[Apache HTTPD](https://httpd.apache.org/) server with [php](https://hub.docker.com/_/php/). 
-Those containers pickup your code off a [Google Cloud Filestore](https://cloud.google.com/filestore/) NFS mount.
+From there the [Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx) picks it up and decrypts it using 
+[Lets Encrypt](https://letsencrypt.org/) TLS Certificates. 
+Then the request goes to your container(s) running the [Apache HTTPD](https://httpd.apache.org/) server with 
+[php](https://hub.docker.com/_/php/).
+Those containers load your code from a [Google Cloud Filestore](https://cloud.google.com/filestore/) NFS mount.
 
 # How-to
 
