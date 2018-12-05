@@ -23,6 +23,12 @@ We take your PHP code, and serve it up at https://random-name.lamp.app.
 Under the hood we do that in the form of [Docker containers](https://www.docker.com/resources/what-container) running in our 
 [Kubernetes](https://kubernetes.io/) cluster on the [Google Cloud Platform](https://cloud.google.com/).
 
+## Users and Organizations
+When you sign up as a lamp.io user the first time you're automatically put in your own default Organization.
+Billing is associated with Organizations, not users.
+This way you can invite other users into into your Organization to work on your apps and other resources.
+Similarly you can be invited into other Organizations where you can create and manage apps for them that they pay for.
+
 ## Traffic flow
 your-app.lamp.app points to a [Google Cloud Load Balancer](https://cloud.google.com/load-balancing/) that sends traffic to our
 Kubernetes ([GKE](https://cloud.google.com/kubernetes-engine/)) cluster. 
@@ -44,5 +50,5 @@ Those containers load your code from a [Google Cloud Filestore](https://cloud.go
 - Using the API
 
 # API Reference
-Our API reference is produced as a [swagger file](https://api.lamp.io/static/swagger.json) and you can interact with it directly from
-your browser [here](https://www.lamp.io/api)
+Our API reference is produced as a [swagger file](https://api.lamp.io/static/swagger.json). 
+You can interact with the API directly from your browser via our [Swagger-UI](https://www.lamp.io/api) setup.
