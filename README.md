@@ -39,10 +39,24 @@ Then the request goes to your container(s) running the [Apache HTTPD](https://ht
 Those containers load your code from a [Google Cloud Filestore](https://cloud.google.com/filestore/) NFS mount.
 
 # How-to
-- [create an app](https://github.com/lamp-io/docs/blob/master/howto/create_an_app.md)
-- [deploy code](https://github.com/lamp-io/docs/blob/master/howto/deploy_code.md)
-- [setup a database](https://github.com/lamp-io/docs/blob/master/howto/setup_db.md)
-- [configure a custom domain](https://github.com/lamp-io/docs/blob/master/howto/custom_domain.md)
+## create an app
+- login to the web interface at [lamp.io](https://www.lamp.io/) or if already logged in click Try It
+- click the 'Create App' button
+
+## deploy code
+- login to the web interface at [lamp.io](https://www.lamp.io/) or if already logged in click Try It
+- select the app you want to deploy code to
+- click 'edit files'
+- click the 'public' directory
+- from here you can create, edit and/or upload files, we've given an example `index.php` to start
+- if you upload a `.zip` or `.tar.gz` file you can expand it by selecting it and clicking 'extract'
+- you can also have us fetch a file from the internet for you by providing the url and clicking 'fetch'
+
+## configure a custom domain
+lamp.io does not yet directly support custom domains, but you can front us with with a CDN that does such as:
+- [Fastly](https://www.fastly.com/)
+- [CloudFlare](https://www.cloudflare.com/)
+- [Fly.io](https://www.fly.io/)
 
 # Tutorials
 - [Wordpress](https://github.com/lamp-io/docs/blob/master/tutorials/wordpress.md)
