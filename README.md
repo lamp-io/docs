@@ -39,10 +39,10 @@ Then the request goes to your container(s) running the [Apache HTTPD](https://ht
 Those containers load your code from a [Google Cloud Filestore](https://cloud.google.com/filestore/) NFS mount.
 
 # How-to
-- create an app
-- deploy code
-- setup a database
-- configure a custom domain
+- [create an app](https://github.com/lamp-io/docs/blob/master/howto/create_an_app.md)
+- [deploy code](https://github.com/lamp-io/docs/blob/master/howto/deploy_code.md)
+- [setup a database](https://github.com/lamp-io/docs/blob/master/howto/setup_db.md)
+- [configure a custom domain](https://github.com/lamp-io/docs/blob/master/howto/custom_domain.md)
 
 # Tutorials
 - [Wordpress](https://github.com/lamp-io/docs/blob/master/tutorials/wordpress.md)
