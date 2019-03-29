@@ -12,21 +12,19 @@ Here you'll find documentation to help you with everything from getting started 
 To get started with lamp.io you sign by going to https://www.lamp.io/ and clicking the "Try It" button.  
 Once you've created your account and logged in you can click around and go from there. 
 We've tried to make it as streamlined and clear as possible. 
-If you want a little more guidance try watching our [demo video](https://www.youtube.com/watch?v=DY-oH7gQ2gQ) or keep reading below and
-we'll walk you through it.
 
 # Concepts
 
 ## LAMP App
 The core product unit in lamp.io is the "app". 
-We take your PHP code, and serve it up at https://random-name.lamp.app. 
+We take your PHP code and serve it up at https://app-<id>.lamp.app. 
 Under the hood we do that in the form of [Docker containers](https://www.docker.com/resources/what-container) running in our 
 [Kubernetes](https://kubernetes.io/) cluster on the [Google Cloud Platform](https://cloud.google.com/).
 
 ## Users and Organizations
 When you sign up as a lamp.io user the first time you're automatically put in your own default Organization.
-Resources and the billing for them are associated with Organizations, not users.
-This way you can invite other users into into your Organization to work on your apps and other resources.
+Resources and billing are associated with Organizations, not users.
+This way you can invite other users into into your Organization to work on your apps.
 Similarly you can be invited into other Organizations where you can create and manage apps for them that they pay for.
 
 ## Traffic flow
@@ -36,7 +34,7 @@ From there the [Nginx Ingress Controller](https://github.com/kubernetes/ingress-
 [Lets Encrypt](https://letsencrypt.org/) TLS Certificates. 
 Then the request goes to your container(s) running the [Apache HTTPD](https://httpd.apache.org/) server with 
 [php](https://hub.docker.com/_/php/).
-Those containers load your code from a [Google Cloud Filestore](https://cloud.google.com/filestore/) NFS mount.
+Those containers load your code from [Google Cloud Filestore](https://cloud.google.com/filestore/).
 
 # How-to
 ## create an app
