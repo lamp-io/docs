@@ -1,5 +1,7 @@
 # Wordpress
 
+[video](https://www.youtube.com/watch?v=l1fAsGW3Wmw)
+
 ## creating lamp.io resources
 - login to lamp.io
 - create an app
