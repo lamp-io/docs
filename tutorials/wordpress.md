@@ -11,6 +11,7 @@ mysql --user=root --host= --password= --execute "\
 create database wordpress; \
 create user 'wordpress'@'%' identified by 'secret'; \
 grant all privileges on wordpress.* to 'wordpress'@'%';"
+```
 - edit in the values for `host` and `password` and click Run
 - in your app click 'edit files'
 - click the `public` directory to move into your DocumentRoot
