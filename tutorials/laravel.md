@@ -31,8 +31,8 @@ $pdo->exec("grant all privileges on homestead.* to 'homestead'@'%';");
   ServerName app-xxxxx.lamp.app
   DocumentRoot /var/www/current/public
 </VirtualHost>
-- edit the `app-xxxxx` above to reflect your apps ID
 ``` 
+- edit the `app-xxxxx` above to reflect your apps ID
 - create a database
 - in your development environment, cd into your laravel application's directory
 - `cp .env .env.live`
