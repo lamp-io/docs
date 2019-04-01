@@ -4,16 +4,17 @@
 ([PaaS](https://azure.microsoft.com/en-us/overview/what-is-paas/)) web application hosting provider. 
 
 That means we provide a platform for you to run your [PHP](http://www.php.net/) code on, without you having to manage any servers.
+
 For more about us check out our [About page](https://www.lamp.io/about).
 
 # Concepts
 
 ## LAMP App
 The core product unit in lamp.io is the "app". 
-We take your PHP code and serve it up at https://app-\<id\>.lamp.app. 
+We take your PHP code and serve it up at `https://app-<id>.lamp.app`.
 
 ## Users and Organizations
-When you sign up as a lamp.io user the first time you're automatically put in your own default Organization.
+When you sign up as a lamp.io user the first time your default Organization is created automatically.
 Resources and billing are associated with Organizations, not users.
 This way you can invite other users into into your Organization to work on your apps.
 Similarly you can be invited into other Organizations where you can create and manage apps for them that they pay for.
