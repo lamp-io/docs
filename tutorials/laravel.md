@@ -11,17 +11,18 @@
   DocumentRoot /var/www/current/public
 </VirtualHost>
 ``` 
-## setup the database
-- create a db
-- back in your app click "App Runs"
-- paste in the following:
+- click back to your app and click "App Runs"
+- paste in the following but don't click "Run" yet
 ```
 mysql --user=root --host= --password= --execute "\
 create database homestead; \
 create user 'homestead'@'%' identified by 'secret'; \
 grant all privileges on homestead.* to 'homestead'@'%';"
 ```
-- edit in the values for `host` and `password` and click Run
+
+## setup the database
+- create a db
+- back in your "App Runs" tab edit in the values for `host` and `password` and click Run
 
 ## configure your local app for deployment
 - `git clone git@github.com:laravel/quickstart-basic.git`
