@@ -36,7 +36,6 @@
     -x "*\.env*" \
     -x "*\.git*" \
     --quiet
-  echo $SECONDS
 @endtask
 
 @task('mkdir-releases')
@@ -66,7 +65,6 @@
     -F "releases/{{ $release }}/artifact.zip=@/tmp/artifact.zip" \
     -H {{ $auth }} \
     -sSo /dev/null
-  echo $SECONDS
 @endtask
 
 @task('extract')
@@ -78,7 +76,6 @@
     -H 'accept: application/vnd.api+json' \
     -d "{\"data\":{\"type\":\"files\",\"id\":\"releases/{{ $release }}/artifact.zip\",\"attributes\":{\"command\":\"unarchive\"}}}"  \
     -sSo /dev/null
-  echo $SECONDS
 @endtask
 
 @task('delete')
@@ -89,7 +86,6 @@
     -H {{ $auth }} \
     -H 'accept: application/vnd.api+json' \
     -sSo /dev/null
-  echo $SECONDS
 @endtask
 
 @task('symlink-storage')
@@ -125,7 +121,6 @@
     -H 'accept: application/vnd.api+json' \
     -d "{\"data\":{\"type\":\"files\",\"id\":\"releases/{{ $release }}/storage\",\"attributes\":{\"is_symlink\":true,\"target\":\"../../storage\"}}}" \
     -sSo /dev/null
-  echo $SECONDS
 @endtask
 
 @task('chown-storage')
@@ -143,7 +138,6 @@
   do
     sleep 2
   done
-  echo $SECONDS
 @endtask
 
 @task('chown-bootstrap-cache')
@@ -161,7 +155,6 @@
   do 
     sleep 2
   done
-  echo $SECONDS
 @endtask
 
 @task('dotenv')
@@ -170,7 +163,6 @@
     -F "releases/{{ $release }}/.env=@.env.live" \
     -H {{ $auth }} \
     -sSo /dev/null
-  echo $SECONDS
 @endtask
 
 @task('pam')
@@ -189,7 +181,6 @@
     sleep 2
   done
   curl {{ $lampio_api }}/app_runs/$RUN_ID -H {{ $auth }} -sS | jq -r '.data.attributes.output'
-  echo $SECONDS
 @endtask
 
 @task('symlink-current')
@@ -212,5 +203,4 @@
       -d "{\"data\":{\"type\":\"files\",\"id\":\"current\",\"attributes\":{\"is_symlink\":true,\"target\":\"releases/{{ $release }}\"}}}" \
       -sSo /dev/null
   fi
-  echo $SECONDS
 @endtask
