@@ -1,40 +1,40 @@
 # Laravel
 
-## Deploying a laravel app to lamp.io
+## drop in deploy
+
+### creating lamp.io resources
+- login to lamp.io
 - create an app
-- create a database
-- paste this into `public/db.php` in your app
+- create a db (save the password and hostname somewhere)
+
+### setting up the database
+- in your app click "App Runs"
+- paste in the following:
 ```
-<?php
-$db_host = '';
-$db_pass = '';
-$db_name = 'mysql';
-$db_user = 'root';
-$pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-$pdo->exec("create database homestead;");
-$pdo->exec("create user 'homestead'@'%' identified by 'secret';");
-$pdo->exec("grant all privileges on homestead.* to 'homestead'@'%';");
-?>
+mysql --user=root --host= --password= --execute "\
+create database homestead; \
+create user 'homestead'@'%' identified by 'secret'; \
+grant all privileges on homestead.* to 'homestead'@'%';"
 ```
-- edit the `db_host` and `db_pass` values to reflect your database
+- edit in the values for `host` and `password` and click Run
 - create the `.env` file in your apps root directory with the correct `DB\_\*` fields
+
+### running the deploy script
 - in your development environment cd into your laravel applications directory
 - `curl -O https://github.com/lamp-io/examples/lampio-laravel-deploy.sh`
 - configure your api token in `~./config/lamp.io/token`
 - run it like this `./lampio-laravel-deploy.sh app-xxxxx`
 
 ### zero downtime deploys
-- create an app
-- paste this into your apps `httpd.conf` section under Configuration
+- follow the instructions above, only
+- in your App, under Configuration, paste the following into the `httpd.conf` section 
+(edit `app-xxxxx` to reflect your app's ID)
 ```
 <VirtualHost *:80>
   ServerName app-xxxxx.lamp.app
   DocumentRoot /var/www/current/public
 </VirtualHost>
 ``` 
-- edit the `app-xxxxx` above to reflect your apps ID
-- create a database
-- in your development environment, cd into your laravel application's directory
 - `cp .env .env.live`
 - edit `.env.live`'s values to reflect your new database
 - `composer require laravel/envoy`
