@@ -1,5 +1,7 @@
 # Laravel
 
+[![lamp.io laravel example](https://img.youtube.com/vi/qsLBDoMCYDs/0.jpg)](https://www.youtube.com/watch?v=qsLBDoMCYDs)
+
 ## create and configure an app 
 - login to lamp.io
 - click "Create App"
