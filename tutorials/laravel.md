@@ -11,7 +11,6 @@
   DocumentRoot /var/www/current/public
 </VirtualHost>
 ``` 
-
 ## setup the database
 - create a db
 - back in your app click "App Runs"
@@ -25,10 +24,12 @@ grant all privileges on homestead.* to 'homestead'@'%';"
 - edit in the values for `host` and `password` and click Run
 
 ## configure your local app for deployment
+- `git clone git@github.com:laravel/quickstart-basic.git`
 - `cp .env .env.live`
-- edit `.env.live`'s values to reflect your new database
+- edit `.env.live`'s `DB_HOST` value to reflect your new database
+- `composer install`
 - `composer require laravel/envoy`
-- `curl -O https://github.com/lamp-io/examples/Envoy.blade.php`
+- `curl -O https://raw.githubusercontent.com/lamp-io/docs/master/tutorials/Envoy.blade.php`
 
 ## deploy
 - `envoy run deploy --app=app-xxxxx`
