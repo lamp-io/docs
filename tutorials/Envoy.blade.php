@@ -184,7 +184,7 @@
 @endtask
 
 @task('symlink-current')
-  if [ "$(curl {{ $lampio_api }}/{{ $app }}/files/current -H {{ $auth }} -sS | jq -r '.data.attributes.is_symlink')" = "true" ]; then
+  if [ "$(curl {{ $lampio_api }}/apps/{{ $app }}/files/current -H {{ $auth }} -H 'accept: application/vnd.api+json' -sS | jq -r '.data.attributes.is_symlink')" = "true" ]; then
     echo update current symlink to the new release
     curl {{ $lampio_api }}/apps/{{ $app }}/files \
       -X PATCH \
