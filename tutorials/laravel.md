@@ -26,6 +26,7 @@ grant all privileges on homestead.* to 'homestead'@'%';"
 
 ## configure your local app for deployment
 - `git clone git@github.com:laravel/quickstart-basic.git`
+- `cd quickstart-basic`
 - `cp .env .env.live`
 - edit `.env.live`'s `DB_HOST` value to reflect your new database
 - `composer install`
