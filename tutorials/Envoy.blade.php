@@ -124,37 +124,26 @@
 @endtask
 
 @task('chown-storage')
-  echo run: chown -R www-data:www-data storage
-  RUN_ID="$(curl {{ $lampio_api }}/app_runs \
-    -X POST \
+  echo set apache_writable on storage
+  curl {{ $lampio_api }}/apps/{{ $app }}/files/storage?recur=true \
+  -X PATCH \
     -H {{ $auth }} \
     -H "Content-Type: application/vnd.api+json" \
     -H "accept: application/vnd.api+json" \
-    -d "{ \"data\": { \"attributes\": { \"app_id\": \"{{ $app }}\", \"command\": \"chown -R www-data:www-data storage\" }, \"type\": \"app_runs\" }}" \
-    -sS \
-    | jq -r '.data.id' \
-  )"
-  until [ "$(curl {{ $lampio_api }}/app_runs/$RUN_ID -H {{ $auth }} -sS | jq -r '.data.attributes.complete')" = "true" ]
-  do
-    sleep 2
-  done
+    -d "{\"data\":{\"type\":\"files\",\"id\":\"storage\",\"attributes\":{\"apache_writable\":true}}}" \
+    -sSo /dev/null
 @endtask
 
 @task('chown-bootstrap-cache')
-  echo run: chown -R www-data:www-data releases/{{ $release }}/bootstrap/cache
-  RUN_ID="$(curl {{ $lampio_api }}/app_runs \
-    -X POST \
+  echo set apache_writable on releases/{{ $release }}/bootstrap/cache
+  curl {{ $lampio_api }}/apps/{{ $app }}/files/releases/{{ $release }}/bootstrap/cache?recur=true \
+  -X PATCH \
     -H {{ $auth }} \
     -H "Content-Type: application/vnd.api+json" \
     -H "accept: application/vnd.api+json" \
-    -d "{ \"data\": { \"attributes\": { \"app_id\": \"{{ $app }}\", \"command\": \"chown -R www-data:www-data releases/{{ $release }}/bootstrap/cache\" }, \"type\": \"app_runs\" }}" \
-    -sS \
-    | jq -r '.data.id' \
-  )"
-  until [ "$(curl {{ $lampio_api }}/app_runs/$RUN_ID -H {{ $auth }} -sS | jq -r '.data.attributes.complete')" = "true" ]
-  do
-    sleep 2
-  done
+    -d "{\"data\":{\"type\":\"files\",\"id\":\"releases/{{ $release }}/bootstrap/cache\",\"attributes\":{\"apache_writable\":true}}}" \
+    -sSo /dev/null
+
 @endtask
 
 @task('dotenv')
