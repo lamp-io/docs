@@ -154,7 +154,7 @@
     -sS \
     | jq -r '.data.id' \
   )"
-  until [ "$(curl {{ $lampio_api }}/app_runs/$RUN_ID -H {{ $auth }} -sS | jq -r '.data.attributes.complete')" = "true" ]
+  until [ "$(curl {{ $lampio_api }}/app_runs/$RUN_ID -H {{ $auth }} -H 'accept: application/vnd.api+json' -sS | jq -r '.data.attributes.complete')" = "true" ]
   do
     sleep 2
   done
