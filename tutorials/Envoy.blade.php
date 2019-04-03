@@ -26,7 +26,7 @@
 @endstory
 
 @task('composer-install')
-  composer install --optimize-autoloader --no-dev
+  composer install --optimize-autoloader
 @endtask
 
 @task('zip')
