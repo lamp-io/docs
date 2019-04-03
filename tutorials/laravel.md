@@ -32,7 +32,7 @@ grant all privileges on homestead.* to 'homestead'@'%';"
 - `cp .env .env.live`
 - edit `.env.live`'s `DB_HOST` value to reflect your new database
 - `composer install`
-- `composer require laravel/envoy`
+- `composer global require laravel/envoy`
 - `curl -O https://raw.githubusercontent.com/lamp-io/docs/master/tutorials/Envoy.blade.php`
 
 ## deploy
