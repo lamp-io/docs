@@ -69,12 +69,12 @@
 
 @task('extract')
   echo extracting the zip remotely
-  curl {{ $lampio_api }}/apps/{{ $app }}/files/releases/{{ $release }}/artifact.zip \
+  curl {{ $lampio_api }}/apps/{{ $app }}/files/releases/{{ $release }}/artifact.zip?command=unarchive \
     -X PATCH \
     -H {{ $auth }} \
     -H "Content-Type: application/vnd.api+json" \
     -H 'accept: application/vnd.api+json' \
-    -d "{\"data\":{\"type\":\"files\",\"id\":\"releases/{{ $release }}/artifact.zip\",\"attributes\":{\"command\":\"unarchive\"}}}"  \
+    -d "{\"data\":{\"type\":\"files\",\"id\":\"releases/{{ $release }}/artifact.zip\"}}"  \
     -sSo /dev/null
 @endtask
 
@@ -104,7 +104,7 @@
     do
       sleep 2
     done
-  fi  
+  fi
 
   echo delete this releases storage dir
   curl {{ $lampio_api }}/apps/{{ $app }}/files/releases/{{ $release }}/storage \
@@ -152,7 +152,7 @@
     | jq -r '.data.id' \
   )"
   until [ "$(curl {{ $lampio_api }}/app_runs/$RUN_ID -H {{ $auth }} -sS | jq -r '.data.attributes.complete')" = "true" ]
-  do 
+  do
     sleep 2
   done
 @endtask
