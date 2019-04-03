@@ -13,6 +13,7 @@
 @story('deploy')
   composer-install
   zip
+  mkdir-releases
   mkdir-this-release
   upload
   extract
@@ -35,6 +36,16 @@
     -x "*\.env*" \
     -x "*\.git*" \
     --quiet
+@endtask
+
+@task('mkdir-releases')
+  echo creating releases directory
+  curl {{ $lampio_api }}/apps/{{ $app }}/files \
+    -H {{ $auth }} \
+    -H "Content-Type: application/vnd.api+json" \
+    -H "accept: application/vnd.api+json" \
+    -d "{\"data\":{\"type\":\"files\",\"id\":\"releases\",\"attributes\":{\"contents\":\"\",\"is_dir\":true}}}"  \
+    -sSo /dev/null
 @endtask
 
 @task('mkdir-this-release')
