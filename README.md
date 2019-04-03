@@ -50,7 +50,7 @@ lamp.io does not yet directly support custom domains, but you can front us with 
 
 # Tutorials
 - [Wordpress](https://github.com/lamp-io/docs/blob/master/tutorials/wordpress.md)
-- Laravel
+- [Laravel](https://github.com/lamp-io/docs/blob/master/tutorials/laravel.md)
 - Using the API
 
 # API Reference
