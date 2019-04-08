@@ -51,7 +51,7 @@ lamp.io does not yet directly support custom domains, but you can front us with 
 # Tutorials
 - [Wordpress](https://github.com/lamp-io/docs/blob/master/tutorials/wordpress.md)
 - [Laravel](https://github.com/lamp-io/docs/blob/master/tutorials/laravel.md)
-- Using the API
+- [API](https://github.com/lamp-io/docs/blob/master/tutorials/api/README.md)
 
 # API Reference
 Our API reference is produced as a [swagger file](https://api.lamp.io/static/swagger.json). 
