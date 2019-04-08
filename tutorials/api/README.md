@@ -1,6 +1,7 @@
 # api.lamp.io demo
 
 [![lamp.io api example](https://img.youtube.com/vi/f9VsXGgG8cQ/0.jpg)](https://www.youtube.com/watch?v=f9VsXGgG8cQ)
+(click image for demo video)
 
 ## create and update app using api
 
