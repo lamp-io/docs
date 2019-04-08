@@ -49,8 +49,8 @@ lamp.io does not yet directly support custom domains, but you can front us with 
 - [Fly.io](https://www.fly.io/)
 
 # Tutorials
-- [Wordpress](https://github.com/lamp-io/docs/blob/master/tutorials/wordpress.md)
-- [Laravel](https://github.com/lamp-io/docs/blob/master/tutorials/laravel.md)
+- [Wordpress](https://github.com/lamp-io/docs/blob/master/tutorials/wordpress/README.md)
+- [Laravel](https://github.com/lamp-io/docs/blob/master/tutorials/laravel/README.md)
 - [API](https://github.com/lamp-io/docs/blob/master/tutorials/api/README.md)
 
 # API Reference
