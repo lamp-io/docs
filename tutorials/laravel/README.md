@@ -1,6 +1,7 @@
 # Laravel
 
 [![lamp.io laravel example](https://img.youtube.com/vi/qsLBDoMCYDs/0.jpg)](https://www.youtube.com/watch?v=qsLBDoMCYDs)
+
 (click image for demo video)
 
 ## create and configure an app 

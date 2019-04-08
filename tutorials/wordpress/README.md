@@ -1,6 +1,7 @@
 # Wordpress
 
 [![lamp.io wordpress install](https://img.youtube.com/vi/l1fAsGW3Wmw/0.jpg)](https://www.youtube.com/watch?v=l1fAsGW3Wmw)
+
 (click image for demo video)
 
 ## creating lamp.io resources
