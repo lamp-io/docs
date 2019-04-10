@@ -1,7 +1,7 @@
 # Tutorials
 
-[Wordpress](https://github.com/lamp-io/docs/blob/master/tutorials/wordpress/README.md)
+[Wordpress](/tutorials/wordpress/)
 
-[Laravel](https://github.com/lamp-io/docs/blob/master/tutorials/laravel/README.md)
+[Laravel](/tutorials/laravel/)
 
-[API](https://github.com/lamp-io/docs/blob/master/tutorials/api/README.md)
+[API](/tutorials/api/)
