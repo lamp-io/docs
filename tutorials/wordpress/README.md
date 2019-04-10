@@ -1,8 +1,6 @@
 # Wordpress
 
-[![lamp.io wordpress install](https://img.youtube.com/vi/l1fAsGW3Wmw/0.jpg)](https://www.youtube.com/watch?v=l1fAsGW3Wmw)
-
-(click image for demo video)
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/l1fAsGW3Wmw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## creating lamp.io resources
 - login to lamp.io

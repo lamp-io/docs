@@ -1,8 +1,6 @@
 # Laravel
 
-[![lamp.io laravel example](https://img.youtube.com/vi/qsLBDoMCYDs/0.jpg)](https://www.youtube.com/watch?v=qsLBDoMCYDs)
-
-(click image for demo video)
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/qsLBDoMCYDs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## create and configure an app
 

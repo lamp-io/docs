@@ -1,8 +1,6 @@
 # api.lamp.io demo
 
-[![lamp.io api example](https://img.youtube.com/vi/f9VsXGgG8cQ/0.jpg)](https://www.youtube.com/watch?v=f9VsXGgG8cQ)
-
-(click image for demo video)
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/f9VsXGgG8cQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## create and update app using api
 
