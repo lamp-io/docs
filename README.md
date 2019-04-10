@@ -48,7 +48,7 @@ lamp.io does not yet directly support custom domains, but you can front us with 
 - [CloudFlare](https://www.cloudflare.com/)
 - [Fly.io](https://www.fly.io/)
 
-# Tutorials
+# [Tutorials](/tutorials/)
 - [Wordpress](/tutorials/wordpress/)
 - [Laravel](/tutorials/laravel/)
 - [API](/tutorials/api/)
