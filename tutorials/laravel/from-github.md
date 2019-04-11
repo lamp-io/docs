@@ -39,8 +39,8 @@ rm -rf * \
 && sed -i 's/127.0.0.1/db-XXXXX/' .env \
 && php artisan migrate
 ```
-- edit in the value of your Github token where it says "<token>" 
-- edit in the location of the Github repo you want to deploy where it says "<github org>" and "<repo name>"
+- edit in the value of your Github token where it says "&lt;token>" 
+- edit in the location of the Github repo you want to deploy where it says "&lt;github org>" and "&lt;repo name>"
 - edit in the value of your lamp.io database where it says "db-XXXXX"
 - click Run, takes 2 - 3 minutes
 
