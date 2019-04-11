@@ -3,7 +3,7 @@
 ## pre-requisites
 you will need a GitHub Personal Access Token with `repo` permissions to repo you are deploying
 
-[https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line]
+[Creating a personal access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
 
 ## create and configure an app
 
