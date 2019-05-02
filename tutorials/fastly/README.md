@@ -3,7 +3,7 @@
 ## how to configure a lamp.io application as an origin in Fastly
 
 - create a lamp.io app or chose an existing one
-- login to your fastly account at https://manage.fastly.com/
+- login to your fastly account at https://manage.fastly.com
 - click the "+ create service" button
 - click the "create your first domain" button
 - put in the domain name you wish to support
@@ -20,4 +20,3 @@
 - put the same string as in the "Address" and "Certificate hostname" fields above
 - click the "SAVE" button
 - in the top right corner click the green "ACTIVATE" button
-- 
