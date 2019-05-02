@@ -5,3 +5,5 @@
 [Laravel](/tutorials/laravel/)
 
 [API](/tutorials/api/)
+
+[Fastly CDN](/tutorials/fastly)

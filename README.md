@@ -44,7 +44,7 @@ Those containers load your code from [Google Cloud Filestore](https://cloud.goog
 
 ## configure a custom domain
 lamp.io does not yet directly support custom domains, but you can front us with with a CDN that does such as:
-- [Fastly](https://www.fastly.com/)
+- [Fastly](/tutorials/fastly/)
 - [CloudFlare](https://www.cloudflare.com/)
 - [Fly.io](https://www.fly.io/)
 
