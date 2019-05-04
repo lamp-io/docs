@@ -46,7 +46,7 @@ Those containers load your code from [Google Cloud Filestore](https://cloud.goog
 lamp.io does not yet directly support custom domains, but you can front us with with a CDN that does such as:
 - [Fastly](/tutorials/fastly/)
 - [CloudFlare](https://www.cloudflare.com/)
-- [Fly.io](https://www.fly.io/)
+- [Fly.io](/tutorials/flyio/)
 
 # [Tutorials](/tutorials/)
 - [Wordpress](/tutorials/wordpress/)

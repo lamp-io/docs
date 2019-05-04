@@ -7,3 +7,5 @@
 [API](/tutorials/api/)
 
 [Fastly CDN](/tutorials/fastly)
+
+[Fly.io CDN](/tutorials/flyio/)
