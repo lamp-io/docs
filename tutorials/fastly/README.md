@@ -11,8 +11,7 @@
 - click the "+CREATE SERVICE" button near the top right
 - click the "CREATE YOUR FIRST DOMAIN" button
 - put in the domain name you wish to support, for example: `app-xxxxx.global.ssl.fastly.net`
-
-  to use your own domain see: https://docs.fastly.com/guides/tls/managing-domains-on-tls-certificates#creating-a-tls-domain
+-- to use your own domain see: https://docs.fastly.com/guides/tls/managing-domains-on-tls-certificates#creating-a-tls-domain
 - click the "CREATE" button
 
 #### configure its origin
