@@ -32,3 +32,4 @@
 #### deploy the new service config
 - in the top right corner click the green "ACTIVATE" button
 - wait up to a minute for the config to rollout
+- load `app-xxxxx.global.ssl.fastly.net` in your browser, you should see the output of your lamp.io app
