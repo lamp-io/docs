@@ -51,7 +51,7 @@ lamp.io does not yet directly support custom domains, but you can front us with 
 # [Tutorials](/tutorials/)
 - [Wordpress](/tutorials/wordpress/)
 - [Laravel](/tutorials/laravel/)
-- [API](./tutorials/api/)
+- [API](/tutorials/api/)
 
 # API Reference
 Our API reference is produced as a [swagger file](https://api.lamp.io/static/swagger.json). 
