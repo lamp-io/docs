@@ -19,3 +19,5 @@ rm -rf * \
 && php artisan make:auth \
 && php artisan migrate
 ```
+- give it a few minutes, you'll see output and a spinner as it makes progress
+- navigate back to your app and click the "VIEW" link to see the results
