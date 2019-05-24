@@ -4,7 +4,7 @@
 
 - login to lamp.io
 - click "Create App"
-- click "App Runs"
+- click "Run Command"
 - paste in the following command and click "RUN"
 ```
 rm -rf * \
