@@ -4,6 +4,8 @@
 
 [Laravel](/tutorials/laravel/)
 
+[Drupal](/tutorials/drupal/)
+
 [API](/tutorials/api/)
 
 [Fastly](/tutorials/fastly)

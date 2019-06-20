@@ -51,6 +51,7 @@ lamp.io does not yet directly support custom domains, but you can front us with 
 # [Tutorials](/tutorials/)
 - [Wordpress](/tutorials/wordpress/)
 - [Laravel](/tutorials/laravel/)
+- [Drupal](/tutorials/drupal/)
 - [API](/tutorials/api/)
 
 # API Reference
