@@ -83,7 +83,6 @@ Now that the intial setup is looking good lets configure a webhook to automatica
 - click the `Try it out` button
 - paste the following in over/replacing the contents of the Body field
 
-
 ```
 {
   "data": {
@@ -123,30 +122,36 @@ $ git push
 ```
 Refresh your browser tab displaying your live app. You may need to count to 5 before you hit refresh.  You should see your updated text, "Laravel Demo Deploy".
 
-Now we've got fully automated deploys to live working, but what if we want to test something or show it to somene before putting it live?
+Now we've got fully automated deploys to live working, but what if we want to test something or show it to someone before putting it live?
 Lets setup a stage environment for that.
 
 ## Stage
 ### create a stage branch
+Run the following command in your terminal:
 ```
 $ git checkout -b stage
-$ vi resources/views/welcome.blade.php
 ```
-edit "Laravel Demo Deploy" to "Laravel Demo Stage"
+Open `resources/views/welcome.blade.php` in your editor again.  This time make it say "Laravel Demo Stage".  Save the file and run the following commands:
+
 ```
 $ git commit resources/views/welcome.blade.php -m 'stage'
 $ git push origin stage
 ```
-view the app (notice it did not deploy)
+
+Now view your live app on lamp.io again.  Notice it did not deploy the change, because it was not to the `master` branch.  Next we'll give it somewhere to go.
 
 ### create a stage app
-back on lamp.io create a second app
-configure it with the name "stage"
-app_run
+In your browser, back on lamp.io, create a second app by navigating to the Apps section and clicking the Create App button again.
+- click Configure
+- add the word "stage" as a description
+- click the Save Changes button
+- navigate back to your app by clicking on its name in the top left corner
+- at the bottom of the page, in the `App runs` section paste the following in the `command` box:
+
 ```
 rm -rf * \
 && ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts \
-&& git clone -b stage git@github.com:jbartus/demo.git . \
+&& git clone -b stage git@github.com:{your_user}/demo.git . \
 && curl -sO https://getcomposer.org/composer.phar \
 && php composer.phar install \
 && cp .env.example .env \
@@ -154,9 +159,12 @@ rm -rf * \
 && chown -R www-data:www-data bootstrap/cache \
 && chown -R www-data:www-data storage
 ```
-view it
+- edit the `{your_user}` part and click `Run`
+- once the run is complete, scroll back near the top and click the `View: app-XXXXX.lamp.app` link
 
-OK now that we have a stage app setup lets configure automatic deploys for it like we did for master->live.\
+You should see "Laravel Demo Stage" proving that we just deployed the stage branch of your github repository.
+
+Now that we have a stage app setup lets configure automatic deploys for it like we did for master->live.
 
 ### setup webhook deploys for stage
 navigate to https://www.lamp.io/api
