@@ -62,7 +62,7 @@ At the bottom of our apps page on lamp.io in the App runs section paste the foll
 ```
 rm -rf * \
 && ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts \
-&& git clone git@github.com:jbartus/demo.git . \
+&& git clone git@github.com:{your_user}/demo.git . \
 && curl -sO https://getcomposer.org/composer.phar \
 && php composer.phar install \
 && cp .env.example .env \
@@ -70,51 +70,55 @@ rm -rf * \
 && chown -R www-data:www-data bootstrap/cache \
 && chown -R www-data:www-data storage
 ```
-Click the Run button.  Give it a few minutes for composer to finish.
+Edit the `{your_user}` part so the url matches the repo we just created, then click the Run button.
+Give it a few minutes for composer to finish.
 
 Once its complete click the View link in the top left to see your app live.
 
 Now that the intial setup is looking good lets configure a webhook to automatically deploy updates.
 
 ### setup webhook deploys
-navigate to https://www.lamp.io/api
-under apps click PATCH /apps/{app_id}
-click Try it out
-edit the body down to 
+- In your browser tab open to your lamp.io app click the `api` link in the top right corner.
+- scroll down to the `Apps` section and click the `PATCH /apps/{app_id}` row
+- click the `Try it out` button
+- paste the following in over/replacing the contents of the Body field
 ```
 {
   "data": {
     "attributes": {
       "webhook_run_command": "if [ \"$(echo $WEBHOOK_GITHUB_PAYLOAD | jq '.ref' -r)\" == \"refs/heads/master\" ]; then ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts && git pull && php composer.phar install; fi"
     },
-    "id": "app-lajgu",
+    "id": "{app_id}",
     "type": "apps"
   }
 }
 ```
-also add the app name at the bottom and click execute
-copy the github_webhook_secret field in the response
-back in your github repo go to settings -> webhooks -> add webhook 
-type in https://api.lamp.io/webhooks/github/app-lajgu
-chose the application/json content type
-paste in the secret from earlier
-click add webhook
-validate 200
+- edit the `{app_id}` part to the actual app ID we created earlier.
+- also add that same app ID to the second form field
+- click execute
+- scroll down a bit to see the response
+- copy the github_webhook_secret field in the response to your clipboard
+- in your browser navigate to your github repo
+- click the Settings tab in the upper right
+- click Webhooks
+- click Add Webhook
+- type in `https://api.lamp.io/webhooks/github/app-XXXXX` using your app ID
+- chose the application/json content type from the pulldown
+- paste in the secret from from your clipbaord
+- click Add webhook
+- verify its green
 
 Now you have your webhook configured to automatically deploy your master branch on any push.
-Lets test that by making another trivial change.
-
-```
-$ vi resources/views/welcome.blade.php
-```
-edit "Laravel Demo" to "Laravel Demo Deploy"
+Lets test that by making another trivial change.  
+- Open the `resources/views/welcome.blade.php` in your editor again
+- change "Laravel Demo" to "Laravel Demo Deploy"
+- save your change and run the following commands in your terminal:
 ```
 $ git commit resources/views/welcome.blade.php -m 'github webhook deploy'
 $ git push
 ```
-view the app
+Refresh your browser tab displaying your live app. You may need to count to 5 before you hit refresh.  You should see your updated text, "Laravel Demo Deploy".
 
-You may need to count to 5 before you hit refresh.
 Now we've got fully automated deploys to live working, but what if we want to test something or show it to somene before putting it live?
 Lets setup a stage environment for that.
 
