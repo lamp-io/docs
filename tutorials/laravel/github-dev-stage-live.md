@@ -82,6 +82,7 @@ Now that the intial setup is looking good lets configure a webhook to automatica
 - scroll down to the `Apps` section and click the `PATCH /apps/{app_id}` row
 - click the `Try it out` button
 - paste the following in over/replacing the contents of the Body field
+
 ```
 {
   "data": {
@@ -93,11 +94,12 @@ Now that the intial setup is looking good lets configure a webhook to automatica
   }
 }
 ```
+
 - edit the `{app_id}` part to the actual app ID we created earlier.
 - also add that same app ID to the second form field
 - click execute
 - scroll down a bit to see the response
-- copy the github_webhook_secret field in the response to your clipboard
+- copy the `github_webhook_secret` field in the response to your clipboard
 - in your browser navigate to your github repo
 - click the Settings tab in the upper right
 - click Webhooks
@@ -113,6 +115,7 @@ Lets test that by making another trivial change.
 - Open the `resources/views/welcome.blade.php` in your editor again
 - change "Laravel Demo" to "Laravel Demo Deploy"
 - save your change and run the following commands in your terminal:
+
 ```
 $ git commit resources/views/welcome.blade.php -m 'github webhook deploy'
 $ git push
