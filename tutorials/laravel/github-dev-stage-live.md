@@ -1,5 +1,5 @@
 # Intro
-In this guide we'll show you how to setup a "dev -> stage -> live" workflow for a laravel application using github and lamp.io
+In this guide we'll show you how to setup a "dev -> stage -> live" workflow for a Laravel application using Github and lamp.io
 
 ## Dev
 First off we'll create a new Laravel application from scratch.  You'll need to already have [Composer](https://getcomposer.org) installed.
@@ -37,7 +37,7 @@ $ git push -u origin master
 ```
 
 ## Live
-Now lets get that app live.  We'll come back and add staging inbetween later.
+Now lets get that app live.  We'll come back and add staging in-between later.
 
 ### create your apps live environment
 In your browser go to [lamp.io](https://www.lamp.io/) and login
@@ -75,7 +75,7 @@ Give it a few minutes for composer to finish.
 
 Once its complete click the View link in the top left to see your app live.
 
-Now that the intial setup is looking good lets configure a webhook to automatically deploy updates.
+Now that the initial setup is looking good lets configure a webhook to automatically deploy updates.
 
 ### setup webhook deploys
 - In your browser tab open to your lamp.io app click the `api` link in the top right corner.
@@ -106,7 +106,7 @@ Now that the intial setup is looking good lets configure a webhook to automatica
 - click Add Webhook
 - type in `https://api.lamp.io/webhooks/github/app-XXXXX` using your app ID
 - chose the application/json content type from the pulldown
-- paste in the secret from from your clipbaord
+- paste in the secret from from your clipboard
 - click Add webhook
 - verify its green
 
@@ -236,4 +236,4 @@ In your browser navigate to your apps github repo.  It will probably show you th
 - Click the `Create pull request` button
 - click the `Merge pull request` button
 
-Thats it.  View your live lamp.io app in your browser and you'll see your first feature is "live".
+That's it.  View your live lamp.io app in your browser and you'll see your first feature is "live".
