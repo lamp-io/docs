@@ -201,42 +201,39 @@ Now that we have a stage app setup lets configure automatic deploys for it like 
 Again now we have webhook based automatic deploys.  Lets test.
 
 ### test stage deploy
-```
-$ vi resources/views/welcome.blade.php
-```
-edit "Laravel Demo" to "Laravel Demo Stage Deploy"
+Edit the `resources/views/welcome.blade.php` again.  This time lets make it say "Laravel Demo Stage Deploy".  Save it and run the following commands in your terminal:
 ```
 $ git commit resources/views/welcome.blade.php -m 'github webhook stage deploy'
 $ git push origin stage
 ```
-view the app on stage (notice change)
-view the app on live (notice no change)
+
+View your stage app in a browser.  You should see the text has changed.
+
+You can also check the live app in your browser to verify the text has not changed.
 
 Ok thats it, you now have the parts for a dev->stage->live workflow of a laravel app using github and lamp.io
 
 # First Feature example workflow
 ## dev
-```
-$ vi resources/views/welcome.blade.php
-```
-edit "Laravel Demo" to "Laravel Feature 1"
+Edit the `resources/views/welcome.blade.php` file one last time.  Lets make it say "Laravel Feature 1".  Save it and run this command:
 ```
 php artisan serve
 ```
-view it
-`Ctrl-c`
+View the result in your browser by going to [http://127.0.0.1:8000](http://127.0.0.1:8000).  Your first feature "works in dev" now.
+
+Press `Ctrl-c` to get your command prompt back.
 
 ## stage
-make sure you're on the stage branch
+In your terminal make sure you're on the stage branch by checking `git branch`.  If so run the following:
 ```
-$ git branch
 $ git commit resources/views/welcome.blade.php -m 'feature 1'
 $ git push origin stage
 ```
-view the stage app
+View the result on your lamp.io stage app.  Your first feature is "up on stage" and ready for review.
 
 ## live
-in github nav to the stage branch
-create a PR
-merge it
-view the live app
+In your browser navigate to your apps github repo.  It will probably show you that your `stage` branch just changed.
+- Click the `Create pull request` button
+- click the `Merge pull request` button
+
+Thats it.  View your live lamp.io app in your browser and you'll see your first feature is "live".
