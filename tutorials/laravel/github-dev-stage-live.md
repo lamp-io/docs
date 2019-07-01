@@ -13,37 +13,41 @@ $ php artisan serve
 ```
 It should give you a link to [http://127.0.0.1:8000](http://127.0.0.1:8000), view that in your browser.  You should see the default Laravel welcome page.
 
-### local changes
+### make a small change
 Now lets make a small edit just to prove we can change things and see them working locally.  
 
 Open the `resources/views/welcome.blade.php` file in your editor and change the "Laravel" string in the middle of the page (not the title) to "Laravel Demo".
 
-Save the file and refresh your browser on [http://127.0.0.1:8000].  You should see the updated text in the middle of the screen.
+Save the file and refresh your browser tab on [http://127.0.0.1:8000](http://127.0.0.1:8000).  You should see the updated text in the middle of the screen.
 
-Now you have a working Laravel app in your dev environment and have made your first change.  Next lets commit that change to a github repository.
+Now you have a working Laravel app in your dev environment and have made your first change.
 
-### setup a github repo for your app
-Back in your terminal type `Ctrl-c` to stop the development webserver and run the following commands:
+### setup a git repo
+Back in your terminal type `Ctrl-c` to stop the development webserver and get your command prompt back. Then run the following commands:
 ```
 $ git init
 $ git add .
 $ git commit -m 'initial commit'
 ```
-In your browser visit [https://github.com/new] to create a new github repo for your application. Copy the example commands from the second "push an existing" example and run them in your terminal.
+In your browser visit [https://github.com/new] to create a new github repo for your application. Copy the example commands from the second "push an existing" section and run them in your terminal.
 
 ```
-$ git remote add origin git@github.com:{your_github_account}/demo.git
+$ git remote add origin git@github.com:{your_user}/demo.git
 $ git push -u origin master
 ```
 
 ## Live
-Now lets get that change live.  We'll come back and add staging inbetween later.
+Now lets get that app live.  We'll come back and add staging inbetween later.
 
 ### create your apps live environment
 login to lamp.io
+
 create an app
+
 configure it with the description "live"
+
 copy the ssh pub key
+
 github repo -> settings -> deploye keys -> add deploy key -> paste -> add key
 app_run: 
 ```
