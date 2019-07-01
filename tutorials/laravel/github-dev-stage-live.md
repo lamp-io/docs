@@ -29,7 +29,7 @@ $ git init
 $ git add .
 $ git commit -m 'initial commit'
 ```
-In your browser visit [https://github.com/new] to create a new github repo for your application. Copy the example commands from the second "push an existing" section and run them in your terminal.
+In your browser visit [github.com/new](https://github.com/new) to create a new github repo for your application. Copy the example commands from the second "push an existing" section and run them in your terminal.
 
 ```
 $ git remote add origin git@github.com:{your_user}/demo.git
@@ -40,7 +40,7 @@ $ git push -u origin master
 Now lets get that app live.  We'll come back and add staging inbetween later.
 
 ### create your apps live environment
-In your browser go to [lamp.io] and login
+In your browser go to [lamp.io](https://www.lamp.io/) and login
 - click Apps in the top navigation
 - click the Create App button 
 - click Configure
