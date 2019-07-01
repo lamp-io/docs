@@ -11,7 +11,7 @@ $ laravel new demo
 $ cd demo
 $ php artisan serve
 ```
-It should give you a link to [http://127.0.0.1:8000], view that in your browser.  You should see the default Laravel welcome page.
+It should give you a link to [http://127.0.0.1:8000](http://127.0.0.1:8000), view that in your browser.  You should see the default Laravel welcome page.
 
 ### local changes
 Now lets make a small edit just to prove we can change things and see them working locally.  
