@@ -1,8 +1,8 @@
 # Intro
-In this guide we'll show you how to setup a github based "dev -> stage -> live" workflow for a laravel application with lamp.io
+In this guide we'll show you how to setup a "dev -> stage -> live" workflow for a laravel application using github and lamp.io
 
 ## Dev
-First off we'll create a new Laravel application from scratch.  You'll need to already have composer available (https://getcomposer.org/)
+First off we'll create a new Laravel application from scratch.  You'll need to already have [Composer](https://getcomposer.org) installed.
 
 ### create a laravel app named "demo" locally
 ```
@@ -11,6 +11,7 @@ $ cd demo
 $ php artisan serve
 ```
 view the result in your browser at http://127.0.0.1:8000
+
 `Ctrl-c` to return to the command prompt
 
 ### make a small change to the homepage
@@ -22,6 +23,7 @@ edit "Laravel" to "Laravel Demo"
 $ php artisan serve
 ```
 http://127.0.0.1:8000
+
 `Ctrl-c`
 
 Now you have a working Laravel app in your dev environment and have made your first change.
