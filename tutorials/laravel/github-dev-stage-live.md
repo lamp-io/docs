@@ -138,7 +138,7 @@ $ git commit resources/views/welcome.blade.php -m 'stage'
 $ git push origin stage
 ```
 
-Now view your live app on lamp.io again.  Notice it did not deploy the change, because it was not to the `master` branch.  Next we'll give it somewhere to go.
+Now view your live app on lamp.io again.  Notice it did not deploy the change because it was not to the `master` branch.  Next we'll give it somewhere to go.
 
 ### create a stage app
 In your browser, back on lamp.io, create a second app by navigating to the Apps section and clicking the Create App button again.
@@ -167,30 +167,36 @@ You should see "Laravel Demo Stage" proving that we just deployed the stage bran
 Now that we have a stage app setup lets configure automatic deploys for it like we did for master->live.
 
 ### setup webhook deploys for stage
-navigate to https://www.lamp.io/api
-under apps click PATCH /apps/{app_id}
-click Try it out
-paste this as the body
+- In your browser navigate to the api section again at [lamp.io/api](https://www.lamp.io/api).
+- scroll down to the `Apps` section and click the `PATCH /apps{app_id}` row again
+- click the `Try it out` button
+- paste in the following over whats there:
+
 ```
 {
   "data": {
     "attributes": {
       "webhook_run_command": "if [ \"$(echo $WEBHOOK_GITHUB_PAYLOAD | jq '.ref' -r)\" == \"refs/heads/stage\" ]; then ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts && git pull && php composer.phar install; fi"
     },
-    "id": "<your_stage_app_id>",
+    "id": "{app_id}",
     "type": "apps"
   }
 }
 ```
-edit your app id into the body and add it to the form
-click execute
-copy the github_webhook_secret field in the response
-back in your github repo go to settings -> webhooks -> add webhook (again, a second one)
-type in https://api.lamp.io/webhooks/github/app-XXXXX
-chose the application/json content type
-paste in the secret from earlier
-click add webhook
-validate it (200)
+- edit the `{app_id}` to match your stage app
+- also add it to the second form field
+- click execute
+- scroll down a bit to see the response
+- copy the `github_webhook_secret` field into your clipboard
+- in your browser navigate back to your github repo
+- click `Settings` in the upper right
+- click `Webhooks`
+- click `Add webhook`
+- type in `https://api.lamp.io/webhooks/github/app-XXXXX` using your stage app ID
+- chose the application/json content type
+- paste in the secret from your clipboard
+- click `Add webhook`
+- verify its green
 
 Again now we have webhook based automatic deploys.  Lets test.
 
