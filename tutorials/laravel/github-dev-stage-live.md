@@ -40,16 +40,25 @@ $ git push -u origin master
 Now lets get that app live.  We'll come back and add staging inbetween later.
 
 ### create your apps live environment
-login to lamp.io
+In your browser go to [lamp.io] and login
+- click Apps in the top navigation
+- click the Create App button 
+- click Configure
+- add the word "live" as a description
+- click the Save Changes button
+- navigate back to your app by clicking on its name in the top left corner
+- click the Copy button on the right side at the end of the Ssh public key row
 
-create an app
+### add your deploy key to the github repo
+- navigate to the github repo you created earlier
+- click the Settings tab
+- click the Deploy Keys section
+- click the Add Deploy Key button
+- paste your buffer into the form field
+- click Add Key
 
-configure it with the description "live"
-
-copy the ssh pub key
-
-github repo -> settings -> deploye keys -> add deploy key -> paste -> add key
-app_run: 
+### do the initial setup of your app
+At the bottom of our apps page on lamp.io in the App runs section paste the following in the command box:
 ```
 rm -rf * \
 && ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts \
@@ -61,10 +70,11 @@ rm -rf * \
 && chown -R www-data:www-data bootstrap/cache \
 && chown -R www-data:www-data storage
 ```
-view the app
+Click the Run button.  Give it a few minutes for composer to finish.
 
-Now you've done your initial setup and deploy of your live app.
-Next lets setup webhooks to automatically trigger future deploys.
+Once its complete click the View link in the top left to see your app live.
+
+Now that the intial setup is looking good lets configure a webhook to automatically deploy updates.
 
 ### setup webhook deploys
 navigate to https://www.lamp.io/api
