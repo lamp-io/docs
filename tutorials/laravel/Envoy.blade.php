@@ -17,12 +17,13 @@
   upload
   extract
   delete
+  setup-storage
   symlink-storage
   chown-storage
   chown-bootstrap-cache
   dotenv
   pam
-  symlink-current
+  symlink-public
 @endstory
 
 @task('composer-install')
@@ -38,147 +39,62 @@
 @endtask
 
 @task('mkdir-this-release')
-  echo creating the releases/{{ $release }} dir
-  curl {{ $lampio_api }}/apps/{{ $app }}/files \
-    -H {{ $auth }} \
-    -H "Content-Type: application/vnd.api+json" \
-    -H "accept: application/vnd.api+json" \
-    -d "{\"data\":{\"type\":\"files\",\"id\":\"releases/{{ $release }}\",\"attributes\":{\"contents\":\"\",\"is_dir\":true}}}"  \
-    -sSo /dev/null
+  lio files:new:dir {{ $app }} releases/{{ $release }}
 @endtask
 
-
 @task('upload')
-  echo uploading the new deployment zip
-  curl {{ $lampio_api }}/apps/{{ $app }}/files \
-    -F "releases/{{ $release }}/artifact.zip=@/tmp/artifact.zip" \
-    -H {{ $auth }} \
-    -sSo /dev/null
+  lio files:upload /tmp/artifact.zip {{ $app }} releases/{{ $release }}/artifact.zip
 @endtask
 
 @task('extract')
-  echo extracting the zip remotely
-  curl {{ $lampio_api }}/apps/{{ $app }}/files/releases/{{ $release }}/artifact.zip?command=unarchive \
-    -X PATCH \
-    -H {{ $auth }} \
-    -H "Content-Type: application/vnd.api+json" \
-    -H 'accept: application/vnd.api+json' \
-    -d "{\"data\":{\"type\":\"files\",\"id\":\"releases/{{ $release }}/artifact.zip\"}}"  \
-    -sSo /dev/null
+  lio files:update:unarchive {{ $app }} releases/{{ $release }}/artifact.zip
 @endtask
 
 @task('delete')
   echo deleting the zip
   rm -f /tmp/artifact.zip
-  curl {{ $lampio_api }}/apps/{{ $app }}/files/releases/{{ $release }}/artifact.zip \
-    -X DELETE \
-    -H {{ $auth }} \
-    -H 'accept: application/vnd.api+json' \
-    -sSo /dev/null
+  lio files:delete {{ $app }} releases/{{ $release }}/artifact.zip
+@endtask
+
+@task('setup-storage')
+  if ! lio files:list {{ $app }} storage -q; then
+    echo copying this releases storage dir as initial shared storage dir
+    lio files:update:move {{ $app }} releases/{{ $release }}/storage /storage
+  fi
 @endtask
 
 @task('symlink-storage')
-  if [ "$(curl {{ $lampio_api }}/apps/{{ $app }}/files/storage -H {{ $auth }} -H "accept: application/vnd.api+json" -s | jq '.errors[].status' -r 2> /dev/null)" = "404" ]; then
-    echo copying this releases storage dir as initial shared storage dir
-    CP_RUN_ID="$(curl {{ $lampio_api }}/app_runs \
-      -X POST \
-      -H {{ $auth }} \
-      -H "Content-Type: application/vnd.api+json" \
-      -H "accept: application/vnd.api+json" \
-      -d "{ \"data\": { \"attributes\": { \"app_id\": \"{{ $app }}\", \"command\": \"cp -a releases/{{ $release }}/storage .\" }, \"type\": \"app_runs\" }}" \
-      -sS \
-      | jq -r '.data.id' \
-    )"
-    until [ "$(curl {{ $lampio_api }}/app_runs/$CP_RUN_ID -H {{ $auth }} -sS | jq -r '.data.attributes.complete')" = "true" ]
-    do
-      sleep 2
-    done
-  fi
-
-  echo delete this releases storage dir
-  curl {{ $lampio_api }}/apps/{{ $app }}/files/releases/{{ $release }}/storage \
-    -X DELETE \
-    -H {{ $auth }} \
-    -H 'accept: application/vnd.api+json' \
-    -sSo /dev/null
-
-  echo symlink this releases storage dir back to the root shared storage dir
-  curl {{ $lampio_api }}/apps/{{ $app }}/files \
-    -X POST \
-    -H {{ $auth }} \
-    -H "Content-Type: application/vnd.api+json" \
-    -H 'accept: application/vnd.api+json' \
-    -d "{\"data\":{\"type\":\"files\",\"id\":\"releases/{{ $release }}/storage\",\"attributes\":{\"is_symlink\":true,\"target\":\"../../storage\"}}}" \
-    -sSo /dev/null
+  lio files:delete {{ $app }} releases/{{ $release }}/storage -y -q
+  lio files:new:symlink {{ $app }} releases/{{ $release }}/storage ../../storage
 @endtask
 
 @task('chown-storage')
   echo set apache_writable on storage
-  curl {{ $lampio_api }}/apps/{{ $app }}/files/storage?recur=true \
-  -X PATCH \
-    -H {{ $auth }} \
-    -H "Content-Type: application/vnd.api+json" \
-    -H "accept: application/vnd.api+json" \
-    -d "{\"data\":{\"type\":\"files\",\"id\":\"storage\",\"attributes\":{\"apache_writable\":true}}}" \
-    -sSo /dev/null
+  lio files:update {{ $app }} storage --apache_writable=true --recursive
 @endtask
 
 @task('chown-bootstrap-cache')
   echo set apache_writable on releases/{{ $release }}/bootstrap/cache
-  curl {{ $lampio_api }}/apps/{{ $app }}/files/releases/{{ $release }}/bootstrap/cache?recur=true \
-  -X PATCH \
-    -H {{ $auth }} \
-    -H "Content-Type: application/vnd.api+json" \
-    -H "accept: application/vnd.api+json" \
-    -d "{\"data\":{\"type\":\"files\",\"id\":\"releases/{{ $release }}/bootstrap/cache\",\"attributes\":{\"apache_writable\":true}}}" \
-    -sSo /dev/null
-
+  lio files:update {{ $app }} releases/{{ $release }}/bootstrap/cache --apache_writable=true --recursive
 @endtask
 
 @task('dotenv')
-  echo uploading the proper .env file
-  curl {{ $lampio_api }}/apps/{{ $app }}/files \
-    -F "releases/{{ $release }}/.env=@.env.live" \
-    -H {{ $auth }} \
-    -sSo /dev/null
+  lio files:upload .env.live {{ $app }} releases/{{ $release }}/.env
 @endtask
 
 @task('pam')
-  echo run: php artisan migrate
-  RUN_ID="$(curl {{ $lampio_api }}/app_runs \
-    -X POST \
-    -H {{ $auth }} \
-    -H "Content-Type: application/vnd.api+json" \
-    -H "accept: application/vnd.api+json" \
-    -d "{ \"data\": { \"attributes\": { \"app_id\": \"{{ $app }}\", \"command\": \"cd releases/{{ $release }} && php artisan migrate\" }, \"type\": \"app_runs\" }}" \
-    -sS \
-    | jq -r '.data.id' \
-  )"
-  until [ "$(curl {{ $lampio_api }}/app_runs/$RUN_ID -H {{ $auth }} -H 'accept: application/vnd.api+json' -sS | jq -r '.data.attributes.complete')" = "true" ]
-  do
-    sleep 2
-  done
-  curl {{ $lampio_api }}/app_runs/$RUN_ID -H {{ $auth }} -sS | jq -r '.data.attributes.output'
+  lio app_runs:new {{ $app }} "cd releases/{{ $release }} && php artisan migrate"
 @endtask
 
-@task('symlink-current')
-  if [ "$(curl {{ $lampio_api }}/apps/{{ $app }}/files/current -H {{ $auth }} -H 'accept: application/vnd.api+json' -sS | jq -r '.data.attributes.is_symlink')" = "true" ]; then
-    echo update current symlink to the new release
-    curl {{ $lampio_api }}/apps/{{ $app }}/files \
-      -X PATCH \
-      -H {{ $auth }} \
-      -H "Content-Type: application/vnd.api+json" \
-      -H 'accept: application/vnd.api+json' \
-      -d "{\"data\":{\"type\":\"files\",\"id\":\"current\",\"attributes\":{\"is_symlink\":true,\"target\":\"releases/{{ $release }}\"}}}" \
-      -sSo /dev/null
-  else
-    echo symlink current to the new release
-    curl {{ $lampio_api }}/apps/{{ $app }}/files \
-      -X POST \
-      -H {{ $auth }} \
-      -H "Content-Type: application/vnd.api+json" \
-      -H 'accept: application/vnd.api+json' \
-      -d "{\"data\":{\"type\":\"files\",\"id\":\"current\",\"attributes\":{\"is_symlink\":true,\"target\":\"releases/{{ $release }}\"}}}" \
-      -sSo /dev/null
+@task('symlink-public')
+  PUBLIC="$(lio files:list {{ $app }} public -j)"
+  if [ "$(echo $PUBLIC | jq -r '.data.attributes.is_dir')" = 'true' ]; then
+    lio files:new:dir {{ $app }} releases/{{ $release }}-pre
+    lio files:update:move {{ $app }} public releases/{{ $release }}-pre/public
+    lio files:new:symlink {{ $app }} public releases/{{ $release }}/public
+  elif [ "$(echo $PUBLIC | jq -r '.data.attributes.is_symlink')" = 'true' ]; then
+    lio files:update:symlink {{ $app }} public releases/{{ $release }}/public
+  elif [ "$(echo $PUBLIC | jq -r '.errors[].status')" = '404' ]; then
+    lio files:new:symlink {{ $app }} public releases/{{ $release }}/public
   fi
 @endtask
