@@ -1,12 +1,19 @@
 #!/bin/bash
 
+if ! [ -x "$(which jq)" ]; then
+  echo required command missing: jq
+  exit 1
+fi
+
 if [ -z "$1" ]; then
   echo need app id for target
   exit 1
 fi
+
 app=$1
 release="$(date +%Y%m%d%H%m%s)";
 
+# run composer with prod flags
 composer install --optimize-autoloader
 
 # zip up the app for uploading
