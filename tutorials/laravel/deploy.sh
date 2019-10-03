@@ -52,7 +52,7 @@ lio files:update $app releases/$release/bootstrap/cache --apache_writable=true -
 lio files:upload .env.live $app releases/$release/.env
 
 # run artisan remotely
-lio app_runs:new $app "cd releases/$release && php artisan migrate"
+# lio app_runs:new $app "cd releases/$release && php artisan migrate"
 
 # get the current state of the docroot (public)
 public="$(lio files:list $app public -j)"
