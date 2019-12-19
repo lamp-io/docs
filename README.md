@@ -1,3 +1,7 @@
+# ***DEPRECATED***
+
+The docs are now located at https://www.lamp.io/docs
+
 # Overview
 
 [lamp.io](https://www.lamp.io) is a [LAMP stack](https://en.wikipedia.org/wiki/LAMP_(software_bundle)) focused Platform as a Service
